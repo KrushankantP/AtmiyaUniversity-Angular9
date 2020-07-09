@@ -1,0 +1,115 @@
+<br/>
+<h2 style="text-align: center; font: italic 35px Snell Roundhand, cursive;">FACULTY LIST </h2>
+<app-create-faculty></app-create-faculty>
+<div class="card mt-3" *ngFor="let faculty of faculties">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-6">
+          <h3 class="card-title">{{faculty.firstName|uppercase }}, {{faculty.lastName|uppercase}}</h3>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+
+    <div class="col-10">
+      <div class="row vertical-align">
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-5">
+              <strong>Gender</strong>
+            </div>
+            <div class="col-7">
+              : {{faculty.gender}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <strong>Date of Birth</strong>
+            </div>
+            <div class="col-7">
+              : {{faculty.dob | date}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <strong>Phone</strong>
+            </div>
+            <div class="col-7">
+              : {{faculty.phone}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <strong>Email</strong>
+            </div>
+            <div class="col-7">
+              : {{faculty.email}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <strong>Address</strong>
+            </div>
+            <div class="col-7">
+              : {{faculty.address.streetAddress_1}}
+                {{faculty.address.streetAddress_2}}<br/>
+                {{faculty.address.city}} {{faculty.address.state}}, {{faculty.address.zip}}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-5">
+              <strong>Designation</strong>
+            </div>
+            <div class="col-7">
+              : {{faculty.designation}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <strong>Salary</strong>
+            </div>
+            <div class="col-7">
+              : {{faculty.salary}}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="float-md-left">
+          <button class="btn btn-dark mx-1"
+                  [routerLink]="['/faculties', faculty.facultyId]">Courses
+          </button>
+          <button class="btn btn-outline-dark mx-2"
+                  data-toggle="modal" data-target="#">Edit
+          </button>
+          <button class="btn btn-outline-danger"
+                  [routerLink]="['/faculties', faculty.facultyId]">Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Error Display -->
+<div class="card">
+  <div class="card-header">
+    <div class="col-12 text-center" >
+      <div *ngIf="!faculties" class="text-danger">
+        {{statusMessage}}
+      </div>
+      <div *ngIf = "faculties && faculties.length==0" class="text-danger">
+        <strong> No faculty records to display.. </strong>
+      </div>
+    </div>
+  </div>
+</div>
+

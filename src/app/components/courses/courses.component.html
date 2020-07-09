@@ -1,0 +1,45 @@
+<br/>
+<div>
+  <h2 style="text-align: center; font: italic 35px Snell Roundhand, cursive;"> COURSE LIST</h2>
+</div>
+<br/>
+<div class="row justify-content-center">
+  <div class="col-lg-9">
+    <app-create-course></app-create-course>
+    <table class="table table-responsive">
+      <thead class="thead-dark">
+      <tr>
+        <th>CourseId</th>
+        <th>CourseCode</th>
+        <th>Title</th>
+        <th>Select</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let course of courses;">
+        <td>{{course.courseId}}</td>
+        <td>{{course.courseCode }}</td>
+        <td>{{course.title}}</td>
+        <td>
+          <button class="btn btn-dark mx-1"
+                  [routerLink]="['/courses', course.courseId]">Schedule
+          </button>
+          <button class="btn btn-outline-dark mx-1"
+                  data-toggle="modal" data-target="#">Edit
+          </button>
+          <button class="btn btn-outline-danger mx-1"
+                  [routerLink]="['/courses', course.courseId]">Delete
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="!courses">
+        <td colspan="4">{{statusMessage}}</td>
+      </tr>
+      <tr *ngIf="courses && courses.length==0">
+        <td colspan="4">No Course records to display</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

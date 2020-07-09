@@ -1,0 +1,89 @@
+<div class="col-md-6">
+  <button type="button" class="btn btn-dark" (click)="showCourseForm()">{{addBtnName}}</button>
+</div>
+
+<br/>
+<ng-container class="col-12" *ngIf= showForm>
+<form [formGroup]="courseFormModel" (ngSubmit)="onSubmit()">
+  <div class="card">
+    <div class="card-header">
+        <h3 class="card-title"> Create Course</h3>
+      </div>
+    <div class="card-body" style="background:snow">
+      <div class="row">
+      <div  class="form-group col-md-6">
+          <label for="courseCode" class="required">Course Code</label>
+          <input class="form-control" formControlName="courseCode" id="courseCode" type="text"
+                 [ngClass]="{'is-invalid': ((courseFormModel.get('courseCode').touched ||
+                                            courseFormModel.get('courseCode').dirty) &&
+                                            courseFormModel.get('courseCode').errors)}">
+            <span class="form-text text-danger" *ngIf=" ((courseFormModel.get('courseCode').touched ||
+                                            courseFormModel.get('courseCode').dirty) &&
+                                            courseFormModel.get('courseCode').errors)">
+              <span *ngIf= "courseFormModel.get('courseCode').errors.required">
+                courseCode is Required
+              </span>
+              <span *ngIf= "courseFormModel.get('courseCode').errors.minlength ||
+                            courseFormModel.get('courseCode').errors.maxlength">
+                courseCode must be greater than 2 characters and less than 10 characters
+              </span>
+            </span>
+        </div>
+    </div>
+      <div class="row">
+      <div  class="form-group  col-md-6">
+        <label for="courseTitle" class="required">Title</label>
+        <input class="form-control" formControlName="title" id="courseTitle" type="text"
+               [ngClass]="{'is-invalid': ((courseFormModel.get('title').touched ||
+                                            courseFormModel.get('title').dirty) &&
+                                            courseFormModel.get('title').errors)}">
+        <span class="form-text text-danger" *ngIf=" ((courseFormModel.get('title').touched ||
+                                            courseFormModel.get('title').dirty) &&
+                                            courseFormModel.get('title').errors)">
+              <span *ngIf= "courseFormModel.get('title').errors.required">
+                Title is Required
+              </span>
+              <span *ngIf= "courseFormModel.get('title').errors.minlength ||
+                            courseFormModel.get('title').errors.maxlength">
+                Title must be greater than 2 characters and less than 10 characters
+              </span>
+            </span>
+      </div>
+    </div>
+    </div>
+    <div class="card-footer" style="background:whitesmoke">
+        <div class="btn-toolbar">
+          <button class="btn btn-dark" [disabled]="courseFormModel.invalid" type="submit" >Save</button>
+        </div>
+        <div *ngIf="successMsg" class="alert alert-success" role="alert">
+      {{Message}}.
+      </div>
+        <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+            {{Message}}
+      </div>
+    </div>
+  </div>
+</form>
+<br/>
+<!--<table border="1">-->
+<!--  <tr>-->
+<!--    <th style="padding: 10px">FormGroup</th>-->
+<!--    <th style="padding: 10px">FormControl (fullName)</th>-->
+<!--  </tr>-->
+<!--  <tr>-->
+<!--    <td style="padding: 10px">-->
+<!--      touched : {{ courseFormModel.touched }}-->
+<!--      <br/> dirty : {{ courseFormModel.dirty }}-->
+<!--      <br/> valid : {{ courseFormModel.valid }}-->
+<!--      <br/> Form Values : {{courseFormModel.value | json}}-->
+<!--    </td>-->
+<!--    <td style="padding: 10px">-->
+<!--      touched : {{ courseFormModel.get('title').touched }}-->
+<!--      <br/> dirty : {{ courseFormModel.get('title').dirty }}-->
+<!--      <br/> valid : {{ courseFormModel.get('title').valid }}-->
+<!--      <br/> FullName Value : {{courseFormModel.get('title').value}}-->
+<!--    </td>-->
+<!--  </tr>-->
+<!--</table>-->
+  <br/>
+</ng-container>

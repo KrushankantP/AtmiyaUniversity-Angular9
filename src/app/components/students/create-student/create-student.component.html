@@ -1,0 +1,187 @@
+
+  <div class="modal-content">
+    <div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">{{formTitle}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+    <div class="modal-body">
+    <form [formGroup]="StudentFormModel">
+      <div class="form-row">
+        <div  class="form-group col-md-6">
+          <label for="firstName" class="required">First Name</label>
+          <input class="form-control" formControlName="firstName"
+                 [ngClass]="{'is-invalid': formErrors.firstName}"
+                 id="firstName" type="text"
+                 placeholder="First Name"
+                 (blur)="logValidationErrors()">
+          <span *ngIf="formErrors.firstName" class="form-text text-danger">
+                              {{formErrors.firstName}}
+            </span>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="lastName" class="required">Last Name</label>
+          <input [ngClass]="{'is-invalid': formErrors.lastName}"
+                 class="form-control" formControlName="lastName"
+                 id="lastName" type="text"
+                 placeholder="Last Name"
+                 (blur)="logValidationErrors()">
+          <span *ngIf="formErrors.lastName" class="form-text text-danger">
+                              {{formErrors.lastName}}
+                </span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label  for="email" class="required">Email</label>
+          <input [ngClass]="{'is-invalid': formErrors.email}"
+                 class="form-control" formControlName="email"
+                 id="email" type="text"
+                 placeholder="Email"
+                 (blur)="logValidationErrors()">
+          <span *ngIf="formErrors.email" class="form-text text-danger">
+                              {{formErrors.email}}
+              </span>
+        </div>
+
+        <div  class="form-group col-md-6">
+          <label for="phone" class="required">Phone No</label>
+          <input [ngClass]="{'is-invalid': formErrors.phone}"
+                 class="form-control" formControlName="phone"
+                 placeholder="Phone"
+                 id="phone" type="text"
+                 (blur)="logValidationErrors()">
+          <span *ngIf="formErrors.phone" class="form-text text-danger">
+                              {{formErrors.phone}}
+          </span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label class="required">Gender</label><br/>
+
+          <div class="form-check-label col-md-2 form-check-inline">
+            <input [ngClass]="{'is-invalid': formErrors.gender}"
+                   class="form-check-input" formControlName="gender"
+                   type="radio"
+                   value="Male"
+                   (blur)="logValidationErrors()">Male
+          </div>
+          <div class="form-check-label col-md-2 form-check-inline">
+            <input [ngClass]="{'is-invalid': formErrors.gender}"
+                   class="form-check-input" formControlName="gender"
+                   type="radio"
+                   value="Female"
+                   (blur)="logValidationErrors()">Female
+          </div>
+          <span *ngIf="formErrors.gender" class="form-text text-danger">
+                {{formErrors.gender}}
+              </span>
+
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="dob" class="required">Date of Birth</label>
+          <input [ngClass]="{'is-invalid': formErrors.dateOfBirth}"
+                 class="form-control" formControlName="dateOfBirth"
+                 id="dob" type="date"
+                 (blur)="logValidationErrors()">
+          <span *ngIf="formErrors.dateOfBirth" class="form-text text-danger">
+                              {{formErrors.dateOfBirth}}
+            </span>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="enrollDate" class="required">Enrollment Date</label>
+          <input [ngClass]="{'is-invalid': formErrors.enrollmentDate}"
+                 class="form-control" formControlName="enrollmentDate"
+                 id="enrollDate" type="date"
+                 (blur)="logValidationErrors()">
+          <span *ngIf="formErrors.enrollmentDate" class="form-text text-danger">
+                              {{formErrors.enrollmentDate}}
+              </span>
+        </div>
+      </div>
+
+      <div style="background:ghostwhite">
+        <div formGroupName="Address">
+          <h4 style="font-weight: bolder"> <u>Address</u></h4>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="streetAddress_1" class="required">Street Address Line 1
+              </label>
+              <input [ngClass]="{'is-invalid': formErrors.streetAddress_1}"
+                     class="form-control" formControlName="streetAddress_1"
+                     id="streetAddress_1"
+                     placeholder="Street Address Line 1" type="text"
+                     (blur)="logValidationErrors()">
+              <span *ngIf="formErrors.streetAddress_1" class="form-text text-danger">
+                              {{formErrors.streetAddress_1}}
+                  </span>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="streetAddress_2">
+                Street Address Line 2
+              </label>
+              <input class="form-control" formControlName="streetAddress_2" id="streetAddress_2"
+                     placeholder="Street Address Line 2" type="text">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="city" class="required">City</label>
+              <input [ngClass]="{'is-invalid': formErrors.city}"
+                     class="form-control" formControlName="city" id="city"
+                     placeholder="City" type="text"
+                     (blur)="logValidationErrors()">
+              <span *ngIf="formErrors.city" class="form-text text-danger">
+                              {{formErrors.city}}
+              </span>
+            </div>
+
+            <div class="form-group col-md-4">
+              <label for="state" class="required">State</label>
+              <input [ngClass]="{'is-invalid': formErrors.state}"
+                     class="form-control" formControlName="state" id="state"
+                     placeholder="State" type="text"
+                     (blur)="logValidationErrors()">
+              <span *ngIf="formErrors.state" class="form-text text-danger">
+                              {{formErrors.state}}
+              </span>
+            </div>
+
+            <div class="form-group col-md-4">
+              <label for="zip" class="required">Zip Code</label>
+              <input [ngClass]="{'is-invalid': formErrors.zip}"
+                     class="form-control" formControlName="zip" id="zip"
+                     placeholder="Zip Code" type="text"
+                     (blur)="logValidationErrors()">
+              <span *ngIf="formErrors.zip" class="form-text text-danger">
+                              {{formErrors.zip}}
+                  </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+    <div class="modal-footer" style="background:whitesmoke">
+  <div *ngIf="successMsg" class="alert alert-success" role="alert">
+    {{Message}}
+  </div>
+  <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+    {{Message}}
+  </div>
+  <div class="btn-toolbar">
+    <button class="btn button btn-dark mx-2" [disabled]="StudentFormModel.invalid" (click)="onSubmit()" type="submit" >Save</button>
+    <button class="btn button btn-dark" (click)="activeModal.dismiss('Cross click')">Close</button>
+  </div>
+</div>
+  </div>

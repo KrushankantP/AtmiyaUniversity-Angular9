@@ -1,0 +1,66 @@
+<br xmlns="http://www.w3.org/1999/html"/>
+<br />
+<ng-container *ngFor="let course of arrayOfCourses">
+  <div *ngIf="course.courseId== courseID">
+    <h2 style="text-align: center; font: italic 25px Snell Roundhand, cursive;">
+      <strong>{{course.title |uppercase}}</strong> SCHEDULE.
+    </h2>
+  </div>
+</ng-container>
+
+
+<br />
+<div class="row justify-content-center">
+
+  <div>
+    <app-create-course-schedule></app-create-course-schedule>
+    <table class="table table-responsive">
+  <thead class="thead-dark">
+  <tr>
+    <th>DayOFWeek</th>
+    <th>Class StartTime</th>
+    <th>Class EndTime</th>
+    <th>Faculty ID</th>
+    <th>Faculty Name</th>
+
+  </tr>
+
+  </thead>
+  <tbody>
+  <ng-container >
+    <tr *ngFor="let schedule of courseSchedule;">
+
+      <td>{{schedule.dayOfWeek | courseWeekDays}}</td>
+      <td>{{schedule.startTime}}</td>
+      <td>{{schedule.endTime}}</td>
+      <td>{{schedule.facultyId}}</td>
+      <td>
+        <ng-container *ngFor="let faculty of arrayOfFaculties">
+          <div *ngIf="schedule.facultyId == faculty.facultyId">
+              {{faculty.firstName}}, {{faculty.lastName}}
+          </div>
+        </ng-container>
+      </td>
+    </tr>
+  </ng-container>
+
+    <tr *ngIf="!courseSchedule">
+      <td colspan="5">
+        {{statusMessage}}
+      </td>
+    </tr>
+
+    <tr *ngIf="courseSchedule && courseSchedule.length==0">
+      <td colspan="5">
+        No Course schedule for this Course ID: {{courseID}}.
+      </td>
+    </tr>
+  </tbody>
+</table>
+    <div style="margin-top:10px">
+      <button type="button" class="btn btn-primary mr-3" (click)="onBackButtonClick()"><- Back</button>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,24 @@
+<br/>
+<u><h2 style="text-align: center;  font: italic 40px Snell Roundhand;">All Table list is follow:</h2> </u>
+<div class="col-12 mt-3">
+    <div class="row justify-content-center">
+      <div>
+        <button type="button" class="btn btn-dark mx-2" (click)="courseListComponent()">{{courseListBtn}}</button>
+      </div>
+      <div>
+        <button type="button" class="btn btn-dark mx-2" (click)="studentListComponent()">{{studentListBtn}}</button>
+      </div>
+      <div>
+        <button type="button" class="btn btn-dark mx-2" (click)="facultyListComponent()">{{facultyListBtn}}</button>
+      </div>
+    </div>
+</div>
+<div *ngIf="courseList">
+  <app-courses></app-courses>
+</div>
+<div *ngIf ="studentList">
+  <app-students></app-students>
+</div>
+<div *ngIf ="facultyList">
+  <app-faculties></app-faculties>
+</div>

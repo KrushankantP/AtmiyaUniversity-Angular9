@@ -1,0 +1,106 @@
+<br />
+<h2 style="text-align: center; font: italic 30px Snell Roundhand, cursive;">STUDENT LIST</h2>
+<div style="margin-bottom:10px" id="AddSection">
+  <button type="button" class="btn btn-dark" (click)="createStudent()">+ New Student</button>
+</div>
+<div class ="card mt-3" *ngFor="let student of students">
+  <div class ="card-header">
+    <div class="row">
+      <div class="col-md-6">
+        <h3 class="card-title"> {{student.firstName|uppercase}}, {{student.lastName|uppercase}}</h3>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="col-10">
+      <div class="row vertical-align">
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-5">
+              <strong>Gender</strong>
+            </div>
+            <div class="col-7">
+              : {{student.gender}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <strong>Date Of Birth</strong>
+            </div>
+            <div class="col-7">
+              : {{student.dob| date}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <strong>Phone</strong>
+            </div>
+            <div class="col-7">
+              : {{student.phone}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <strong>Email</strong>
+            </div>
+            <div class="col-7">
+              : {{student.email}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <strong>Address</strong>
+            </div>
+            <div class="col-7">
+              : {{student.address.streetAddress_1}}
+                {{student.address.streetAddress_2}}<br/>
+                {{student.address.city}} {{student.address.state}}, {{student.address.zip}}
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-5">
+              <strong>Enrollment Date</strong>
+            </div>
+            <div class="col-7">
+              : {{student.enrollmentDate| date}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="float-md-left">
+          <button class="btn btn-dark mx-1"
+                  [routerLink]="['/students', student.studentId]">Courses
+          </button>
+          <button class="btn btn-outline-dark mx-2"
+                  (click)="manageStudent(student)">Edit
+          </button>
+          <button class="btn btn-outline-danger"
+                  [routerLink]="['/students', student.studentId]">Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Error Display -->
+<div class="card">
+  <div class="card-header">
+    <div class="col-12 text-center" >
+      <div *ngIf="!students" class="text-danger">
+        {{statusMessage}}
+      </div>
+      <div *ngIf = "students && students.length==0" class="text-danger">
+        <strong> No Student records to display.. </strong>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,102 @@
+
+<!-- Modal Popup to Edit Assigned Courses -->
+<div class="modal fade" id="EditAssignedCourses" role="dialog" aria-labelledby="EditAssignedCourses" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background:whitesmoke">
+        <h5 class="modal-title">Assign Courses to Faculty</h5>
+        <button class="close btn-dark" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body row justify-content-center">
+        <div>
+            <div class ="alert-secondary">
+          You have Selected <strong>{{assignedCoursesObjList.length}}</strong> Courses.
+        </div>
+            <table class="table table-responsive">
+          <thead class="thead-dark">
+          <tr>
+            <th>Course ID</th>
+            <th>Course Code</th>
+            <th>Title</th>
+            <th>Select</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let CoObjList of courseObjList;">
+            <td>{{CoObjList.courseId}}</td>
+            <td>{{CoObjList.courseCode}}</td>
+            <td>{{CoObjList.title}}</td>
+            <td>
+              <input type="checkbox"
+              (change)="onChange( $event.target.checked, CoObjList)"
+              [checked]="checked(CoObjList)">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="modal-footer" style="background:whitesmoke">
+        <div *ngIf="successMsg" class="alert alert-success" role="alert">
+          {{Message}}.
+        </div>
+        <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+          {{Message}}
+        </div>
+        <div class="btn-toolbar">
+          <button class="btn btn-dark mx-2" type="submit" (click)=" onSave()">Save</button>
+          <button class="btn btn-dark" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<br />
+
+<!-- List of Courses Assigned to Faculty -->
+<ng-container *ngFor="let faculty of faculties" >
+  <div *ngIf="faculty.facultyId == facultyId">
+    <h2 style="text-align: center; font: italic 25px Snell Roundhand, cursive;">
+      COURSES ASSIGNED TO:
+      <strong>{{faculty.firstName| uppercase}}, {{faculty.lastName|uppercase}}</strong>
+    </h2>
+  </div>
+</ng-container>
+<br />
+<br/>
+<div class="row justify-content-center">
+  <div>
+    <div style="margin-bottom:10px">
+      <button type="button" class="btn btn-primary mr-3" (click)="onBackButtonClick()"><- Back</button>
+      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#EditAssignedCourses">Edit Courses</button>
+    </div>
+    <table class="table table-responsive">
+  <thead class="thead-dark">
+  <tr>
+    <th>Course ID</th>
+    <th>Course Code</th>
+    <th>Title</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let AssignCoList of assignedCoursesObjList;">
+      <td>{{AssignCoList.courseId}}</td>
+      <td>{{AssignCoList.courseCode}}</td>
+      <td>{{AssignCoList.title}}</td>
+    </tr>
+    <tr *ngIf="!assignedCoursesObjList">
+      <td colspan="3">{{statusMessage}}</td>
+    </tr>
+    <tr *ngIf="assignedCoursesObjList && assignedCoursesObjList.length==0">
+      <td colspan="3">No Course Assigned to this Faculty ID: {{facultyId}}.</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+
+
+

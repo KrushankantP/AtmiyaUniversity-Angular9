@@ -1,0 +1,99 @@
+<div class="col-md-6">
+  <button type="button" class="btn btn-dark" (click)="showScheduleFrom()">{{addBtnName}}</button>
+</div>
+<br/>
+<ng-container class="col-sm-12" *ngIf= showForm>
+  <form [formGroup]="courseScheduleFromModel" (ngSubmit)="onSubmit()">
+    <div class="card">
+      <div class="card-header ">
+        <h3 class="card-title" style="font-family:'Times New Roman';font-weight: bolder"> Create Schedule</h3>
+      </div>
+    </div>
+    <div class="card-body" style="background:snow">
+      <div class="row">
+        <div class="form-group col-md-8">
+        <label for="dayOfWeek" class="required">Day Of week </label>
+        <select class="form-control" formControlName="dayOfWeek" id="dayOfWeek"
+
+                [ngClass]="{'is-invalid': ((courseScheduleFromModel.get('dayOfWeek').touched ||
+                                            courseScheduleFromModel.get('dayOfWeek').dirty) &&
+                                            courseScheduleFromModel.get('dayOfWeek').errors)}">
+          <option value="" disabled>Select Weekday</option>
+          <option *ngFor="let day of dayOfWeek" [ngValue]=day>{{day|courseWeekDays}}</option>
+        </select>
+        <span class="form-text text-danger" *ngIf=" ((courseScheduleFromModel.get('dayOfWeek').touched ||
+                                            courseScheduleFromModel.get('dayOfWeek').dirty) &&
+                                            courseScheduleFromModel.get('dayOfWeek').errors)">
+              <span *ngIf= "courseScheduleFromModel.get('dayOfWeek').errors.required">
+                Day Of Week is Required.!
+              </span>
+            </span>
+      </div>
+      </div>
+      <div class="row">
+        <div  class="form-group col-md-4">
+        <label for="startTime" class="required">Start Time</label>
+        <input class="form-control" formControlName="startTime" id="startTime" type="time"
+               [ngClass]="{'is-invalid': ((courseScheduleFromModel.get('startTime').touched ||
+                                            courseScheduleFromModel.get('startTime').dirty) &&
+                                            courseScheduleFromModel.get('startTime').errors)}">
+        <span class="form-text text-danger" *ngIf=" ((courseScheduleFromModel.get('startTime').touched ||
+                                            courseScheduleFromModel.get('startTime').dirty) &&
+                                            courseScheduleFromModel.get('startTime').errors)">
+              <span *ngIf= "courseScheduleFromModel.get('startTime').errors.required">
+                Start Time is Required.!
+              </span>
+            </span>
+      </div>
+
+        <div  class="form-group col-md-4">
+          <label for="endTime" class="required">End Time</label>
+          <input class="form-control" formControlName="endTime" id="endTime" type="time"
+                 [ngClass]="{'is-invalid': ((courseScheduleFromModel.get('endTime').touched ||
+                                            courseScheduleFromModel.get('endTime').dirty) &&
+                                            courseScheduleFromModel.get('endTime').errors)}">
+          <span class="form-text text-danger" *ngIf=" ((courseScheduleFromModel.get('endTime').touched ||
+                                            courseScheduleFromModel.get('endTime').dirty) &&
+                                            courseScheduleFromModel.get('endTime').errors)">
+              <span *ngIf= "courseScheduleFromModel.get('endTime').errors.required">
+                End Time is Required.!
+              </span>
+            </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-8">
+        <label for="facultyId" class="required">Faculty Name</label>
+        <select class="form-control" formControlName="facultyId" id="facultyId"
+                [ngClass]="{'is-invalid': ((courseScheduleFromModel.get('dayOfWeek').touched ||
+                                            courseScheduleFromModel.get('dayOfWeek').dirty) &&
+                                            courseScheduleFromModel.get('dayOfWeek').errors)}">
+          <option value="" disabled>Select Faculty</option>
+          <option class="" *ngFor="let faculty of faculties" [ngValue]=faculty.facultyId>
+            {{faculty.firstName}}, {{faculty.lastName}}
+          </option>
+        </select>
+        <span class="form-text text-danger" *ngIf=" ((courseScheduleFromModel.get('facultyId').touched ||
+                                            courseScheduleFromModel.get('facultyId').dirty) &&
+                                            courseScheduleFromModel.get('facultyId').errors)">
+              <span *ngIf= "courseScheduleFromModel.get('facultyId').errors.required">
+                Faculty Id Is Required.!
+              </span>
+            </span>
+      </div>
+      </div>
+    </div>
+    <div class="card-footer" style="background:whitesmoke">
+      <div class="btn-toolbar">
+        <button class="btn btn-dark" [disabled]="courseScheduleFromModel.invalid" type="submit" >Save</button>
+      </div>
+      <div *ngIf="successMsg" class="alert alert-success" role="alert">
+        {{Message}}.
+      </div>
+       <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+        {{Message}}
+      </div>
+    </div>
+  </form>
+  <br/>
+</ng-container>
