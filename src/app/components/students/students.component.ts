@@ -13,7 +13,7 @@ export class StudentsComponent implements OnInit {
   students: IStudent[];
   statusMessage: string= "Loading data. Please wait... ";
   constructor(private _studentServices: StudentService,
-              private modalService: NgbModal) { }
+              private _modalService: NgbModal) { }
 
   ngOnInit(): void {
    this.fetchStudents();
@@ -25,13 +25,12 @@ export class StudentsComponent implements OnInit {
       });
   }
   createStudent(){
-    const modalRef = this.modalService.open(CreateStudentComponent,{size:'lg'})
+    const modalRef = this._modalService.open(CreateStudentComponent,{size:'lg'})
     modalRef.componentInstance.formTitle = "New Student";
   }
   manageStudent(student: IStudent) {
-    const modalRef = this.modalService.open(CreateStudentComponent,{size:'lg'})
+    const modalRef = this._modalService.open(CreateStudentComponent,{size:'lg'})
     modalRef.componentInstance.studentObj = student;
     modalRef.componentInstance.formTitle ="Edit Student";
-   // modalRef.componentInstance.date = new Date(student.dob)
   }
 }

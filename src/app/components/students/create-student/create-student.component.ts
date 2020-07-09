@@ -4,7 +4,6 @@ import { Validators } from "@angular/forms";
 import {IStudent} from "../../../models/IStudent";
 import {StudentService} from "../../../services/student.service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {DatePipe} from "@angular/common";
 import * as moment from 'moment';
 
 @Component({
@@ -92,8 +91,7 @@ export class CreateStudentComponent implements OnInit {
   //FormBuilder is an Service so that's why we have to inject in Constructor.
   constructor(private fb: FormBuilder,
               private _studentService: StudentService,
-              public activeModal: NgbActiveModal,
-              private _datePipe: DatePipe) {
+              public _activeModal: NgbActiveModal) {
   }
 
   ngOnInit(): void {
@@ -152,7 +150,6 @@ export class CreateStudentComponent implements OnInit {
       phone: student.phone,
       gender: student.gender,
       dateOfBirth: new Date(student.dob).toISOString().split('T')[0],
-      //moment(student.dob).format('L')
       Address: {
         streetAddress_1: student.address.streetAddress_1,
         streetAddress_2: student.address.streetAddress_2,
