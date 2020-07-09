@@ -1,15 +1,8 @@
-<div style="margin-bottom:10px" id="addSection">
-  <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#AddFaculty">+ New Faculty</button>
-</div>
-
-<div class="modal fade" id="AddFaculty" role="dialog" aria-labelledby="addFacultyLabel" aria-hidden="true">
-
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background:whitesmoke">
-        <h5 class="modal-title">Create Faculty</h5>
-        <button class="close btn-dark" data-dismiss="modal" aria-label="close">
-          <span aria-hidden="true"> &times;</span>
+ <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{formTitle}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="_activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
@@ -201,28 +194,5 @@
           <button class="btn button btn-dark" data-dismiss="modal">Close</button>
         </div>
       </div>
-    </div>
+ </div>
 
-    <br/>
-<!--    <table border="1">-->
-<!--      <tr>-->
-<!--        <th style="padding: 10px">FormGroup</th>-->
-<!--        <th style="padding: 10px">FormControl (fullName)</th>-->
-<!--      </tr>-->
-<!--      <tr>-->
-<!--        <td style="padding: 10px">-->
-<!--          touched : {{ FacultyFormModel.touched }}-->
-<!--          <br/> dirty : {{ FacultyFormModel.dirty }}-->
-<!--          <br/> valid : {{ FacultyFormModel.valid }}-->
-<!--          <br/> Form Values : {{FacultyFormModel.value | json}}-->
-<!--        </td>-->
-<!--        <td style="padding: 10px">-->
-<!--          touched : {{ FacultyFormModel.get('firstName').touched }}-->
-<!--          <br/> dirty : {{ FacultyFormModel.get('firstName').dirty }}-->
-<!--          <br/> valid : {{ FacultyFormModel.get('firstName').valid }}-->
-<!--          <br/> FullName Value : {{FacultyFormModel.get('firstName').value}}-->
-<!--        </td>-->
-<!--      </tr>-->
-<!--    </table>-->
-  </div>
-</div>

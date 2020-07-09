@@ -1,12 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FacultyService} from "../../../services/faculty.service";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {IFaculty} from "../../../models/IFaculty";
-import {ActivatedRoute, Router} from "@angular/router";
-import {map} from "rxjs/operators";
-import{dropDownList} from "../../../Classes/DropDownList";
 
-declare var $: any;
 
 @Component({
   selector: 'app-create-faculty',
@@ -19,6 +16,8 @@ export class CreateFacultyComponent implements OnInit {
   successMsg: boolean =false;
   errorMsg: boolean = false;
   Message: string;
+  @Input() formTitle: string;
+  @Input() public facultyObj;
   // This object will hold the messages to be displayed to the user
   // Notice, each key in this object has the same name as the
   // corresponding form control
@@ -97,15 +96,15 @@ export class CreateFacultyComponent implements OnInit {
 
     };
 
-
-    private state :any;
   constructor(private fb: FormBuilder,
-              private route: ActivatedRoute,
-              private router:Router,
-              private _facultyService: FacultyService){ }
+              private _facultyService: FacultyService,
+              public _activeModal: NgbActiveModal){ }
 
   ngOnInit(): void {
     this.createFacultyFrom();
+    if(this.facultyObj != undefined){
+      this.editFacultyForm(this.facultyObj)
+    }
     this.valueChangesInFacultyForm();
   }
 
@@ -153,6 +152,25 @@ export class CreateFacultyComponent implements OnInit {
     });
   }
 
+  editFacultyForm(faculty: IFaculty){
+    this.FacultyFormModel.patchValue({
+        firstName: faculty.firstName,
+        lastName: faculty.lastName,
+        email: faculty.email,
+        phone: faculty.phone,
+        gender: faculty.gender,
+        dateOfBirth: new Date(faculty.dob).toISOString().split('T')[0],
+        Address: {
+          streetAddress_1: faculty.address.streetAddress_1,
+          streetAddress_2: faculty.address.streetAddress_2,
+          city: faculty.address.city,
+          state: faculty.address.state,
+          zip: faculty.address.zip
+        },
+      designation: faculty.designation,
+      salary: faculty.salary
+      });
+  }
   valueChangesInFacultyForm(): void {
     this.FacultyFormModel.valueChanges.subscribe(data => {
       this.logValidationErrors(this.FacultyFormModel);

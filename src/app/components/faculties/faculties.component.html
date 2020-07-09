@@ -1,6 +1,8 @@
 <br/>
 <h2 style="text-align: center; font: italic 35px Snell Roundhand, cursive;">FACULTY LIST </h2>
-<app-create-faculty></app-create-faculty>
+<div style="margin-bottom:10px" id="addSection">
+  <button type="button" class="btn btn-dark"(click)="createFaculty()">+ New Faculty</button>
+</div>
 <div class="card mt-3" *ngFor="let faculty of faculties">
   <div class="card-header">
     <div class="row">
@@ -88,7 +90,7 @@
                   [routerLink]="['/faculties', faculty.facultyId]">Courses
           </button>
           <button class="btn btn-outline-dark mx-2"
-                  data-toggle="modal" data-target="#">Edit
+                  (click) = "editFaculty(faculty)">Edit
           </button>
           <button class="btn btn-outline-danger"
                   [routerLink]="['/faculties', faculty.facultyId]">Delete
