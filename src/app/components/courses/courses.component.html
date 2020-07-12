@@ -5,7 +5,6 @@
 <br/>
 <div class="row justify-content-center">
   <div class="col-lg-9">
-    <app-create-course></app-create-course>
     <table class="table table-responsive">
       <thead class="thead-dark">
       <tr>
@@ -26,7 +25,7 @@
                   [routerLink]="['/courses', course.courseId]">Schedule
           </button>
           <button class="btn btn-outline-dark mx-1"
-                  data-toggle="modal" data-target="#">Edit
+                  (click)="onEditBtnClick(course.courseId,course)">Edit
           </button>
           <button class="btn btn-outline-danger mx-1"
                   [routerLink]="['/courses', course.courseId]">Delete

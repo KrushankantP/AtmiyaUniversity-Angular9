@@ -1,13 +1,14 @@
-<div class="col-md-6">
-  <button type="button" class="btn btn-dark" (click)="showCourseForm()">{{addBtnName}}</button>
-</div>
+<!--<div class="col-md-6">-->
+<!--  <button type="button" class="btn btn-dark" (click)="showCourseForm()">{{addBtnName}}</button>-->
+<!--</div>-->
 
-<br/>
-<ng-container class="col-12" *ngIf= showForm>
+
+<!--<ng-container class="col-12" *ngIf= showForm>-->
+<div class="pt-5">
 <form [formGroup]="courseFormModel" (ngSubmit)="onSubmit()">
   <div class="card">
     <div class="card-header">
-        <h3 class="card-title"> Create Course</h3>
+        <h3 class="card-title">{{pageTitle}}</h3>
       </div>
     <div class="card-body" style="background:snow">
       <div class="row">
@@ -64,6 +65,7 @@
     </div>
   </div>
 </form>
+</div>
 <br/>
 <!--<table border="1">-->
 <!--  <tr>-->
@@ -86,4 +88,4 @@
 <!--  </tr>-->
 <!--</table>-->
   <br/>
-</ng-container>
+<!--</ng-container>-->

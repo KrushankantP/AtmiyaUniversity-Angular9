@@ -12,8 +12,12 @@ import {IStudent} from "../models/IStudent";
 })
 export class CourseService {
   private newList: ICourse[];
+  public ServiceCourseObj:ICourse;
 
-  constructor(private _httpClient: HttpClient) { }
+  constructor(private _httpClient: HttpClient) {
+
+    console.log(this.ServiceCourseObj)
+  }
 
   getCourses(): Observable<ICourse[]>{
         return this._httpClient.get<ICourse[]>(environment.baseUrl + "Courses");

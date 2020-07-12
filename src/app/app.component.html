@@ -8,8 +8,14 @@
       <li class="nav-item active">
         <a class="nav-link" routerLink="" >Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-      <a class="nav-link" routerLink="/courses" >Courses </a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" routerLink="/courses" id="CourseDropDownMenu"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Courses
+        </a>
+        <div class="dropdown-menu bg-dark" aria-labelledby="CourseDropDownMenu">
+          <a class="dropdown-item bg-dark text-white" routerLink="/courses">Course List</a>
+          <a class="dropdown-item bg-dark text-white" routerLink="/create-course">Create Course</a>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/students" >Students</a>

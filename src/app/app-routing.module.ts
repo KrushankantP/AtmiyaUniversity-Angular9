@@ -11,18 +11,22 @@ import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.
 import {EnrolledCoursesForStudentsComponent} from "./components/students/enrolled-courses-for-students/enrolled-courses-for-students.component";
 import {CourseAssignToFacultyComponent} from "./components/faculties/course-assign-to-faculty/course-assign-to-faculty.component";
 import {CreateFacultyComponent} from "./components/faculties/create-faculty/create-faculty.component";
+import {CreateCourseComponent} from "./components/courses/create-course/create-course.component";
 
 const routes: Routes=[
   {path: "",  component: HomeComponent},
   {path: "courses", component: CoursesComponent},
+  {path: "create-course", component: CreateCourseComponent},
+  {path: "edit-course/:id", component: CreateCourseComponent},
   {path: "students", component: StudentsComponent},
   {path: "faculties", component: FacultiesComponent},
   {path: "courses/:id", component: CourseScheduleComponent},
   {path: "students/:id", component: EnrolledCoursesForStudentsComponent},
-  {path: "faculties/:id", component:CourseAssignToFacultyComponent},
+  {path: "faculties/:id", component: CourseAssignToFacultyComponent},
   {path: "allList", component: AllListComponent},
   {path:'', redirectTo:"", pathMatch:"full"},
   {path:"**", component: PageNotFoundComponent},
+
   ];
 
 

@@ -91,3 +91,7 @@ span{
 .newshadow{
   box-shadow: 0 0 11px 0px dimgrey;
 }
+
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}

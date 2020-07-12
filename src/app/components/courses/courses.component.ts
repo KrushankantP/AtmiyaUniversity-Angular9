@@ -2,20 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import{CourseService} from "../../services/course.service";
 import{ICourse} from "../../models/ICourse";
 import {ICourseSchedule} from "../../models/ICourse-schedule";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.css'],
-  providers:[CourseService]
 })
 export class CoursesComponent implements OnInit {
 
   courses:ICourse[];
   statusMessage: string= "Loading data. Please wait... ";
   constructor(private _courseServices: CourseService,
-              private _activatedRoute: ActivatedRoute) { }
+              private _router: Router) { }
 
   ngOnInit(): void {
     this.fetchCourse();
@@ -28,4 +27,10 @@ export class CoursesComponent implements OnInit {
     );
   }
 
+  onEditBtnClick(courseId:number, course:ICourse) {
+
+    this._courseServices.ServiceCourseObj = course
+    this._router.navigate(['edit-course', courseId])
+
+  }
 }

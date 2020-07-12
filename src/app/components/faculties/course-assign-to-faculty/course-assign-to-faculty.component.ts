@@ -51,8 +51,7 @@ export class CourseAssignToFacultyComponent implements OnInit {
       },
         (error)=> {
           this.statusMessage = "Problem with the service. Please try again after some time..!"
-        }
-      );
+        });
   }
   //fetch all faculties Records
   fetchAllFaculties(): void{
